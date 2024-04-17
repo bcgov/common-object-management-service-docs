@@ -1,0 +1,10 @@
+version: 1
+data_management_roles:
+  product_owner: Sharolyn Hurley
+product_information:
+  ministry: WLRS
+  product_acronym: COMS
+  product_description: A microservice for managing access control to S3 Objects
+  product_name: Common Object Management Service
+product_technology_information:
+  hosting_platforms: Private-Cloud-Openshift

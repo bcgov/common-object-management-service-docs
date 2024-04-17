@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: common-object-management-service
+  title: Common Object Management Service
+  description: A microservice for managing access control to S3 Objects
+  annotations:
+    github.com/project-slug: bcgov/common-object-management-service-docs
+    backstage.io/techdocs-ref: dir:.
+    bcgovpubcode.gov.bc.ca/ministry: WLRS
+    bcgovpubcode.gov.bc.ca/product_name: Common Object Management Service
+    bcgovpubcode.gov.bc.ca/product_acronym: COMS
+    bcgovpubcode.gov.bc.ca/product_owner: Sharolyn Hurley
+    developer.gov.bc.ca/source_template: default/docs-template
+spec:
+  type: documentation
+  lifecycle: experimental
+  owner: group:default/common-services-admin
