@@ -3,14 +3,27 @@ site_description: "A microservice for managing access control to S3 Objects"
 docs_dir: "docs"
 repo_url: "https://github.com/bcgov/common-object-management-service-docs"
 edit_uri: edit/main/docs
-nav:
-    - Introduction: index.md
-    - Getting started: getting-started.md
-    - Configuration: configuration.md
-    - Tips and tricks: tips-and-tricks.md
-    - About us: about-us.md
 plugins:
     - techdocs-core
     - git-revision-date-localized
 markdown_extensions:
     - md_in_html
+nav:
+- Contents: index.md
+- API User Guide:
+  - Authentication: Authentication.md
+  - Endpoint Notes: Endpoint-Notes.md
+  - Permissions: Permissions.md
+  - Metadata and Tags: Metadata-Tag.md
+  - Managing buckets: Buckets.md
+  - Synchronization: Synchronization.md
+  - Use-Case Examples: Use-Case-Examples.md
+- Deployment Guide:
+  - Self-Hosting COMS: Self-Hosting-COMS.md 
+  - Architecture: Architecture.md
+  - Configuration Options: Configuration.md
+  - Testing: Testing.md
+- The Hosted Service:
+  - Hosting Considerations: Hosting-Considerations.md 
+  - Hosted Service Architecture: Architecture-Hosted.md
+  - Hosted Service Onboarding: Hosted-Service-Onboarding.md
