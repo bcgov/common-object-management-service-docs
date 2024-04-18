@@ -8,8 +8,10 @@ plugins:
     - git-revision-date-localized
 markdown_extensions:
     - md_in_html
+    - toc:
+        permalink: "#"
 nav:
-- Contents: index.md
+- Introduction: index.md
 - API User Guide:
   - Authentication: Authentication.md
   - Endpoint Notes: Endpoint-Notes.md
@@ -20,10 +22,14 @@ nav:
   - Use-Case Examples: Use-Case-Examples.md
 - Deployment Guide:
   - Self-Hosting COMS: Self-Hosting-COMS.md 
-  - Architecture: Architecture.md
+  - Architecture: 
+    - Overview: Architecture.md
+    - Database: Architecture/#database-structure
+    - Code Design: Architecture/#code-design
   - Configuration Options: Configuration.md
   - Testing: Testing.md
 - The Hosted Service:
   - Hosting Considerations: Hosting-Considerations.md 
   - Hosted Service Architecture: Architecture-Hosted.md
   - Hosted Service Onboarding: Hosted-Service-Onboarding.md
+- Product Roadmap: Product-Roadmap.md

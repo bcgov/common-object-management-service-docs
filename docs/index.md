@@ -1,38 +1,34 @@
 # Common Object Management Service
 
-A microservice for managing access control to S3 Objects
+A microservice for managing access control to files in S3-compatible Object Storage
 
-## Wiki Contents
+Take advantage of more cost-effective storage solutions for your new or existing business applications. Common Object Management Service (COMS) is a secure REST API that lets you connect your application to an S3 bucket. In S3, you can store and share files, images, and documents with co-workers, partners, or the public.
 
-**API User Guide:**
+## Onboarding Options
 
-- [Authentication](Authentication.md)
-- [Endpoint Notes](Endpoint-Notes.md)
-- [Permissions](Permissions.md)
-- [Metadata and Tags](Metadata-Tag.md)
-- [Managing buckets](Buckets.md)
-- [Synchronization](Synchronization.md)
-- [Use-Case Examples](Use-Case-Examples.md)
+COMS is now available as a shared hosted service as well as an application that you can customise and deploy in your own infrastructure. See documentation on [Hosting Considerations](Hosting-Considerations.md).
 
-**Deployment Guide:**<br />
-Install COMS in your own environment for extra features
+We have also launched [BCBox](https://bcbox.nrs.gov.bc.ca), a DropBox-like user-interface for managing files, integrated with the hosted COMS service.
 
-- [Self-Hosting COMS](Self-Hosting-COMS.md)
-- [Architecture](Architecture.md)
-  - [Database](Architecture.md#database-structure)
-  - [Code Design](Architecture.md#code-design)
-- [Configuration Options](Configuration.md)
-- [Testing](Testing.md)
+## Feature List
 
-**The Hosted Service:**<br />
-Find out if the BC Gov Hosted COMS service will work for you?
+- Upload, download, manage and delete files
+- Manage file versions and soft-deletes
+- Enable general public access to files
+- Grant permissions on buckets and files to authenticated users (eg IDIR or BCeID)
+- Share and invite users to work with your files
+- Manage metadata and tags on objects
+- Flexible search and filter capabilities based on objects attributes and user permissions
+- Sync COMS with files that already exist in your bucket
 
-- [Hosted Service Onboarding](Hosted-Service-Onboarding.md)
-- [Hosting Considerations](Hosting-Considerations.md)
-- [Hosted Service Architecture](Architecture-Hosted.md)
+## Product Reference
 
+Please follow the links in the side menu to learn more about COMS.
 
-<br />
+- Hosted COMS service URL: [https://coms.api.gov.bc.ca](https://coms.api.gov.bc.ca)
+- GitHub Repository: [https://github.com/bcgov/common-object-management-service/](https://github.com/bcgov/common-object-management-service/)
+- API Specification: [https://coms.api.gov.bc.ca/api/v1/docs](https://coms.api.gov.bc.ca/api/v1/docs)
+- UI Integration: [BCBox](https://bcbox.nrs.gov.bc.ca)
 
 **[Product Roadmap](Product-Roadmap.md)**
 
