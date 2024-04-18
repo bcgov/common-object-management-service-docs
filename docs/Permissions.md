@@ -10,7 +10,7 @@ This page outlines the general design used for managing User Access Control to S
     - [Examples](#examples)
     - [Response Scope Expansion](#response-scope-expansion)
   - [Mode Considerations](#mode-considerations)
-- [Overrides](#overrides)
+- [Invite Links](#invite-links)
   - [Public](#public)
 
 ## Overview
@@ -171,9 +171,11 @@ The above permission system will only be enforced if your instance of COMS is ru
 
 For more specific information on COMS deployment modes and how they differ, please take a look at the COMS [Configuration guide](Configuration#authentication-modes).
 
-## Overrides
+## Invite Links
 
-While the COMS DAC model is generally precise about what users are able to do, there are specific escape hatches and situations where the DAC is superceded or ignored by COMS for a different ruleset. This is done because while the DAC is rich and capable of expressing many access control needs, there are situations where the user may not be known in advance, and as such binding a permission to the potential user is not possible.
+COMS also offers a user invite feature. Generate a time-limited, single use invitation token which can be used by an authenticated user to acquire `READ` or other permissions to a specific resource (object or bucket). Optional email-user validation may be specified to ensure the link is only used by the intended recipient. To create an invite link one must have the MANAGE permission on the resource being shared.
+
+See [API Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
 
 ### Public
 

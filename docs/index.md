@@ -6,7 +6,8 @@ Take advantage of more cost-effective storage solutions for your new or existing
 
 ## Onboarding Options
 
-COMS is now available as a shared hosted service as well as an application that you can customise and deploy in your own infrastructure. See documentation on [Hosting Considerations](Hosting-Considerations.md).
+COMS is now available as a shared hosted service as well as an application that you can customise and deploy in your own infrastructure.<br />
+See documentation on [Hosting Considerations](Hosting-Considerations.md).
 
 We have also launched [BCBox](https://bcbox.nrs.gov.bc.ca), a DropBox-like user-interface for managing files, integrated with the hosted COMS service.
 
@@ -29,8 +30,7 @@ Please follow the links in the side menu to learn more about COMS.
 - GitHub Repository: [https://github.com/bcgov/common-object-management-service/](https://github.com/bcgov/common-object-management-service/)
 - API Specification: [https://coms.api.gov.bc.ca/api/v1/docs](https://coms.api.gov.bc.ca/api/v1/docs)
 - UI Integration: [BCBox](https://bcbox.nrs.gov.bc.ca)
-
-**[Product Roadmap](Product-Roadmap.md)**
+- **[Product Roadmap](Product-Roadmap.md)**
 
 ***
 

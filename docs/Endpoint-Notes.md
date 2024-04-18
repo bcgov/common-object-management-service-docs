@@ -10,6 +10,7 @@ This page outlines the general usage patterns and organization of the COMS API. 
   - [Tag](#tag)
   - [Versions](#versions)
 - [Permission](#permission)
+- [Invite URL's](#invite-urls)
 - [Sync](#sync)
 - [User](#user)
 
@@ -31,27 +32,31 @@ Object endpoints directly influence and manipulate S3 objects and information in
   - Calling in the Delete endpoint on a bucket without versioning is a hard-delete.
 - The `GET /object` search and `PATCH /object/{objectId}/public` public toggle require a backing database in order to function.
 
-### Metadata
+## Metadata
 
 Metadata operation endpoints directly focus on the manipulation of metadata of S3 Objects. Each endpoint will create a copy of the object with the modified metadata attached.
 
 More details found here: [Metadata and Tags](Metadata-Tag.md)
 
-### Tag
+## Tag
 
 Tag operation endpoints directly focus on the manipulation of tags of S3 Objects. Unlike Metadata, Tags can be modified without the need to create new versions of the object.
 
 More details found here: [Metadata and Tags](Metadata-Tag.md)
 
-### Versions
+## Versions
 
 Version specific operations focus on listing and discovering versioning information known by COMS. While the majority of version-specific operations are available as query parameters in the Objects endpoints, the `GET /object/{objectId}/version` endpoint focuses on letting users discover and list what versions are available to work with.
 
-## Permission
+## Permissions
 
 Permission operation endpoints directly focus on associating users to objects with specific permissions. All of these endpoints require a database to function. Existing permissions can be searched for using `GET /permission/object` and `GET /permission/bucket`, and standard create, read and delete operations for permissions exist to allow users to modify access control for specific objects they have management permissions over.
 
-More details found here: [Permissions](Permissions.md)
+## Invite URL's
+
+COMS also offers a user invite feature. Generate a time-limited, single use invitation token which can be used by an authenticated user to acquire `READ` or other permissions to a specific resource (object or bucket). Optional email-user validation may be specified to ensure the link is only used by the intended recipient. To create an invite link one must have the MANAGE permission on the resource being shared.
+
+See [API Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
 
 ## Sync
 

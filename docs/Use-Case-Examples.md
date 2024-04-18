@@ -30,6 +30,6 @@ The following steps describe how a document management interface in your applica
 6. `User B` logs in to the client application.
 7. Client application makes request to [Read Object](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/readObject) endpoint (with User B's JWT in an Authorization header)
     - COMS will verify User B using the JWT and look up permissions for the file in the COMS database
-    - COMS will then respond with a redirect to a pre-signed url to the source object in the storage server or allow direct download via proxy. Read the section on [OIDC AUthentication](Authentication#authentication-flow-for-readobject) for more details.
+    - COMS will then respond with a redirect to a pre-signed url to the source object in the storage server or allow direct download via proxy. Read the section on [OIDC AUthentication](Authentication.md#authentication-flow-for-readobject) for more details.
 
 For full implementation details of the COMS API, visit the [BCBox](https://github.com/bcgov/bcbox) repository.
