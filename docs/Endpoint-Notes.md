@@ -35,13 +35,13 @@ Object endpoints directly influence and manipulate S3 objects and information in
 
 Metadata operation endpoints directly focus on the manipulation of metadata of S3 Objects. Each endpoint will create a copy of the object with the modified metadata attached.
 
-More details found here: [Metadata and Tags](Metadata-Tag)
+More details found here: [Metadata and Tags](Metadata-Tag.md)
 
 ### Tag
 
 Tag operation endpoints directly focus on the manipulation of tags of S3 Objects. Unlike Metadata, Tags can be modified without the need to create new versions of the object.
 
-More details found here: [Metadata and Tags](Metadata-Tag)
+More details found here: [Metadata and Tags](Metadata-Tag.md)
 
 ### Versions
 
@@ -51,7 +51,7 @@ Version specific operations focus on listing and discovering versioning informat
 
 Permission operation endpoints directly focus on associating users to objects with specific permissions. All of these endpoints require a database to function. Existing permissions can be searched for using `GET /permission/object` and `GET /permission/bucket`, and standard create, read and delete operations for permissions exist to allow users to modify access control for specific objects they have management permissions over.
 
-More details found here: [Permissions](Permissions)
+More details found here: [Permissions](Permissions.md)
 
 ## Sync
 
