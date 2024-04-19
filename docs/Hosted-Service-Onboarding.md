@@ -25,8 +25,6 @@ Some important aspects of the hosted service to consider:
 
 - **BCBox Integration:** Using the Hosted COMS service has the added benefit of being able to integrate your application with [BCBox](https://bcbox.nrs.gov.bc.ca/) - a hosted drop-box type interface for sharing files.
 
-- A **Synchronization** feature is [coming soon](Product-Roadmap.md) that will allow COMS to manage objects that were in the bucket or are handled outside of the COMS API.
-
 ### Environments
 
 As part of your development workflow, ensure your application is using the correct COMS environment. **The Hosted COMS service only accepts User Auth tokens issued in the corresponding SSO 'Standard' realm.**

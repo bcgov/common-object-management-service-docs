@@ -1,13 +1,9 @@
-# Configuration
-
 This page outlines the general deployment decisions you will need to consider before standing up COMS and is mainly intended for a technical audience, and for people who want to have a better understanding of how the system features interact with each other. For instructions on running COMS, please refer to our [Application README](https://github.com/bcgov/common-object-management-service/blob/master/app/README.md).
 
-
-  - [Object Storage](#object-storage)
-  - [Authentication Modes](#authentication-modes)
-  - [Bucket Credentials Encryption](#bucket-credential-encryption)
-  - [Privacy Controls](#privacy-controls)
-
+- [Object Storage](#object-storage)
+- [Authentication Modes](#authentication-modes)
+- [Bucket Credentials Encryption](#bucket-credential-encryption)
+- [Privacy Controls](#privacy-controls)
 
 The configuration of COMS is done using the NodeJS [config](https://www.npmjs.com/package/config) library.
 environment variables for the COMS application are listed [here](https://raw.githubusercontent.com/bcgov/common-object-management-service/master/app/config/custom-environment-variables.json). These variables can be created in each deployment environment. In this page we explain these configuration options:
