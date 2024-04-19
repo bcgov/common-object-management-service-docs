@@ -82,4 +82,4 @@ The search endpoint also allows you to search objects with a specific key withou
 
 These metadata and tag selectors can also be combined with other supported query parameters for [the search query endpoint](https://coms-dev.api.gov.bc.ca/api/v1/docs#tag/Object/operation/searchObjects).
 
-Search results can also be scoped to a current user's permissions by enabling the COMS `PrivacyMask` [Privacy Configuration](Configuration#privacy-controls).
+Search results can also be scoped to a current user's permissions by enabling the COMS `PrivacyMask` [Privacy Configuration](Config.md#privacy-controls).

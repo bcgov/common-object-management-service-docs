@@ -1,7 +1,7 @@
 
 ### Configuring Buckets
 
-- COMS is [configured with a 'default' bucket](Configuration.md#object-storage). Various object management endpoints will use this bucket if no `bucketId` parameter is provided. (**Note:** the default bucket fall-back behaviour is not available in the BC Gov Hosted COMS service.)
+- COMS is [configured with a 'default' bucket](Config.md#object-storage). Various object management endpoints will use this bucket if no `bucketId` parameter is provided. (**Note:** the default bucket fall-back behaviour is not available in the BC Gov Hosted COMS service.)
 
 - Additional buckets can be added to the COMS system using the [createBucket](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/createBucket) endpoint.
 
