@@ -11,6 +11,6 @@ Feature Comparison:
 | &nbsp; Database Custodians | &nbsp; Us | &nbsp; You
 | &nbsp; Object Storage Custodians | &nbsp; You | &nbsp; You
 | &nbsp; Multi-bucket support | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul>
-| &nbsp; Strict [Privacy mode](Configuration.md#privacy-controls)  | <ul><li>[x] </li></ul> | &nbsp; Configurable
-| &nbsp; [No-Auth mode](Configuration.md#unauthenticated)| <ul><li>[ ] </li></ul> | &nbsp; Configurable
+| &nbsp; Strict [Privacy mode](Config.md#privacy-controls)  | <ul><li>[x] </li></ul> | &nbsp; Configurable
+| &nbsp; [No-Auth mode](Config.md#unauthenticated)| <ul><li>[ ] </li></ul> | &nbsp; Configurable
 | &nbsp; Custom configuration options | <ul><li>[ ] </li></ul> | <ul><li>[x] </li></ul>

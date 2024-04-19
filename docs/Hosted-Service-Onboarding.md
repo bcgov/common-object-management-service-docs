@@ -19,13 +19,11 @@ Some important aspects of the hosted service to consider:
 
 ### Privacy Controls
 
-- The stricter [Privacy Controls](Configuration.md#privacy-controls) setting is enabled in the Hosted service (requires `READ` permission on bucket or object to discover or access the file and related data). This removes the abiility to search for objects that you don't have permissions for.
+- The stricter [Privacy Controls](Config.md#privacy-controls) setting is enabled in the Hosted service (requires `READ` permission on bucket or object to discover or access the file and related data). This removes the abiility to search for objects that you don't have permissions for.
 
 ### Additional features
 
 - **BCBox Integration:** Using the Hosted COMS service has the added benefit of being able to integrate your application with [BCBox](https://bcbox.nrs.gov.bc.ca/) - a hosted drop-box type interface for sharing files.
-
-- A **Synchronization** feature is [coming soon](Product-Roadmap.md) that will allow COMS to manage objects that were in the bucket or are handled outside of the COMS API.
 
 ### Environments
 

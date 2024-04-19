@@ -169,7 +169,7 @@ The above permission system will only be enforced if your instance of COMS is ru
 - Both `NOAUTH` and `BASICAUTH` modes will completely ignore permissions as they are not in scope of permission and security enforcement. This applies whether there is a backing database or not.
 - While running in `FULLAUTH` mode, if the client authenticates with a Basic authorization header, permissions are ignored as basic auth behaves as a system superuser and has "sudo" permissions to the COMS system. This applies whether there is a backing database or not.
 
-For more specific information on COMS deployment modes and how they differ, please take a look at the COMS [Configuration guide](Configuration#authentication-modes).
+For more specific information on COMS deployment modes and how they differ, please take a look at the COMS [Configuration guide](Config.md#authentication-modes).
 
 ## Invite Links
 

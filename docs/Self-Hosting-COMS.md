@@ -7,9 +7,9 @@ To compare with features with the BC Gov Hosted Service, see the [Hosting Consid
 - Your application uses a custom OIDC realm or has custom integration requirements with other IDPs.
 - You just need a user-friendly, REST-based S3 client 'wrapper'.
 - You can configure COMS to suit your needs:
-  - Refer to the different [Authentication Modes](Configuration#authentication-modes)
+  - Refer to the different [Authentication Modes](Config.md#authentication-modes)
   - Use the default S3 bucket to use for all operations
-  - Disable the strict [Privacy Controls](Configuration#privacy-controls) to make object metadata searchable
+  - Disable the strict [Privacy Controls](Config.md#privacy-controls) to make object metadata searchable
 - You want to modify COMS source code before running (it's a REST API built with NodeJS and Express)
 - You want to be the custodians of the COMS database that contains user permissions and document metadata
 

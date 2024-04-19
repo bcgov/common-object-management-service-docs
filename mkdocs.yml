@@ -26,8 +26,7 @@ nav:
     - Overview: Architecture.md
     - Database: Architecture/#database-structure
     - Code Design: Architecture/#code-design
-  - Configuration Options: Configuration.md
-  - Testing: Testing.md
+  - Configuration Options: Config.md
 - The Hosted Service:
   - Hosting Considerations: Hosting-Considerations.md 
   - Hosted Service Architecture: Architecture-Hosted.md
