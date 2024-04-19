@@ -1,5 +1,5 @@
 
-To compare with features with the BC Gov Hosted Service, see the [Hosting Considerations](Hosting-Considerations) page.
+To compare with features with the BC Gov Hosted Service, see the [Hosting Considerations](Hosting-Considerations.md) page.
 
 ## Reasons to self-host
 
