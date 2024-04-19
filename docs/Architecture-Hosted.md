@@ -1,6 +1,6 @@
 This page outlines the architecture and deployment features of the BC Gov Hosted COMS service. It is mainly intended for a technical audience, and for people who want to have a better understanding of how we have the service deployed.
 
-**Note:** For more details of the COMS application itself and how it works, see the [Architecture](Architecture) overview.
+**Note:** For more details of the COMS application itself and how it works, see the [Architecture](Architecture.md) overview.
 
 ## Table of Contents
 
