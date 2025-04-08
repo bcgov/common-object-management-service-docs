@@ -72,9 +72,10 @@ Basic Auth can also be used where machine-to-machine API access is required. Thi
 
 ```sh
 "basicAuth": {
-  "enabled": “true", # note: to disable, delete this environment variable
+  "enabled": "true", # note: to disable, delete this environment variable
+  
   "s3AccessMode": "true",
-
+  
   "password": "<custom Basic Auth Password.",
   "username": "<custom Basic Auth Username>"
 },
@@ -83,8 +84,8 @@ Basic Auth can also be used where machine-to-machine API access is required. Thi
 In this case, storage credentials provided by the optimization teams are used to grant access. The following are used as user and password:
 
 ```sh
-accesskeyid
-accesskeysecret
+Accesskeyid
+Accesskeysecret
 ```
 
 Additional request params: bucket and endpoint must be provided in the request headers using the following key-value pairs:
