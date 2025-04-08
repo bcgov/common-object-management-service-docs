@@ -13,12 +13,13 @@ markdown_extensions:
 nav:
 - Introduction: index.md
 - API User Guide:
-  - Authentication: Authentication.md
+  - Authentication: Authentication.md  
   - Endpoint Notes: Endpoint-Notes.md
   - Permissions: Permissions.md
   - Metadata and Tags: Metadata-Tag.md
   - Managing buckets: Buckets.md
-  - Synchronization: Synchronization.md
+  - Service Account: Service-Account.md  
+  - Synchronization: Synchronization.md  
   - Use-Case Examples: Use-Case-Examples.md
 - Deployment Guide:
   - Self-Hosting COMS: Self-Hosting-COMS.md 

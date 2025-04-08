@@ -68,6 +68,32 @@ This mode is generally recommended for systems where you expect to use COMS at a
 },
 ```
 
+Basic Auth can also be used where machine-to-machine API access is required. This can be set by enabling the s3AccessMode in the configuration, which is enabled by default on all COMS environments. This setup is suitable for service-level account access.
+
+```sh
+"basicAuth": {
+  "enabled": “true", # note: to disable, delete this environment variable
+  "s3AccessMode": "true",
+
+  "password": "<custom Basic Auth Password.",
+  "username": "<custom Basic Auth Username>"
+},
+```
+
+In this case, storage credentials provided by the optimization teams are used to grant access. The following are used as user and password:
+
+```sh
+accesskeyid
+accesskeysecret
+```
+
+Additional request params: bucket and endpoint must be provided in the request headers using the following key-value pairs:
+
+```sh
+x-amz-bucket: <bucket>
+x-amz-endpoint: <endpoint>
+```
+
 ### Full
 
 This mode is generally recommended for systems that need both user level and administrative level access to objects. This grants the full suite of functionality COMS offers, but care must be taken to ensure that access to objects is done securely from your line of business application.
