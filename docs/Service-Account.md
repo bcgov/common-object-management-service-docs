@@ -7,17 +7,19 @@ Service account feature for COMS can be enabled by setting s3AccessMode enabled 
 For M2M API access, the storage credentials are used to authenticate API requests. These credentials consist of an Access Key ID and Access Key Secret, which are essential for machine-to-machine communication.
 
 #### Service Account Credentials:
-***Accesskeyid:*** The unique identifier for the service account.
+Access Key ID - username of the object-storage user account - eg: `energy_user_1`
 
-***Accesskeysecret:** The associated secret key for the service account.
+Secret Access Key - secret or password for the object-storage user account - eg: `f6jGUSrmd9gdQg6`
 
 #### Set Request Headers and Parameters
 
 With s3AccessMode enabled, the M2M communication requires specific headers to authenticate and provide access correctly.
 
-***x-amz-bucket:*** The name of the bucket being accessed by the service account.
+bucket (*x-amz-bucket*) - Name/ID of the object-storage bucket - eg: `abcdef`
 
-***x-amz-endpoint:*** The endpoint to which the request is directed.
+endpoint (*x-amz-endpoint*) Object Storage Service Endpoint - object-storage service url - eg: `https://nrs.objectstore.gov.bc.ca/`
+
+ The endpoint to which the request is directed.
 
 ### Security Considerations
 
