@@ -15,4 +15,4 @@ metadata:
 spec:
   type: documentation
   lifecycle: experimental
-  owner: group:default/common-services-admin
+  owner: bcgov/common-services-admin
