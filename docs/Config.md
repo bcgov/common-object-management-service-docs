@@ -30,6 +30,7 @@ This group of variables define a **default** object storage location and bucket.
 COMS provides a combination of authentication modes, intended to makes COMS more *compatible* with your architecture. Depending on the roles you expect COMS to play in your use case, you will need to choose between one of the following four authentication modes:
 
 - [OIDC](#oidc-keycloak) (`OIDCAUTH`)
+- [Service Accounts](Authentication.md#service-accounts) (Available without configuration)
 - [Basic](#basic) (`BASICAUTH`)
 - [Full](#full) (`FULLAUTH`)
 - [Unauthenticated](#unauthenticated) (`NOAUTH`)
@@ -53,7 +54,8 @@ This mode is generally recommended for systems where you expect users to interac
 
 ### Basic
 
-This mode is generally recommended for systems where you expect to use COMS at a service-client level. Basic user/password protection is granted and enforced.
+This mode is for self-hosted instances of COMS where you expect to use COMS at a service-client level. Basic user/password protection is granted and enforced. Note: This provides a 'global' way to perform all operations accross all connected buckets.
+For multi-client access using bucket credentials use [Service Accounts](Authentication.md#service-accounts).
 
 - Clients require a Basic Authorization header ([RFC 7617](https://datatracker.ietf.org/doc/html/rfc7617))
 - Provides an "all or nothing" permission model

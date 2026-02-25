@@ -1,6 +1,6 @@
 This page describes how to authenticate requests to the COMS API. The [Authentication Modes](Config.md#authentication-modes) must be enabled in the COMS configuration.
 
-**Note:** The BC Gov Hosted COMS service only allows OIDC Authentication using JWT's issued by the [Pathfinder SSO `standard` keycloak realm](https://github.com/bcgov/sso-keycloak/wiki#standard-service)).
+**Note:** The BC Gov Hosted COMS service only allows [OIDC Authentication](#oidc-authentication) using JWT's issued by the [Pathfinder SSO `standard` keycloak realm](https://github.com/bcgov/sso-keycloak/wiki#standard-service))
 
 ## OIDC Authentication
 
@@ -12,7 +12,8 @@ When COMS receives the request, it will validate the JWT (by calling the OIDC re
 
 The authentication when downloading an object also uses S3 pre-signed URLs:
 
-### Authentication flow for readObject
+<details>
+<summary>Authentication flow for readObject</summary>
 
 Reference: [API Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/readObject) for more details.
 
@@ -29,7 +30,36 @@ COMS uses the redirect flow by default because it avoids unnecessary network hop
 
 **Figure 2 - The general network flow for a typical COMS object request**
 
-## Basic Auth
+</details>
+
+## Service Accounts
+
+The Service Account feature for COMS can be enabled by setting `s3AccessMode` enabled in configuration, it allows automated systems or services to securely interact with the COMS environment using object-stroage credentilas for authentication and orization scoped to a particular bucket. Below are the steps for configuring and utilizing `s3AccessMode`.
+
+### Credentials
+
+The object-storage account credentials are used to authenticate API requests. These credentials consist of an Access Key ID and Access Key Secret.
+
+#### Service Account Credentials:
+***Access Key ID*** - username of the object-storage user account - eg: `energy_user_1`
+
+***Secret Access Key*** - secret or password for the object-storage user account - eg: `f6jGUSrmd9gdQg6`
+
+#### Set Request Headers and Parameters
+
+With `s3AccessMode` enabled, the M2M communication requires specific headers to authenticate and provide access correctly.
+
+***bucket*** (`x-amz-bucket`) - Name/ID of the object-storage bucket - eg: `abcdef`
+
+***endpoint*** (`x-amz-endpoint`) Object Storage Service Endpoint - object-storage service url - eg: `https://nrs.objectstore.gov.bc.ca/`
+
+### Security Considerations
+
+***Store Credentials Securely***: Ensure the accesskeyid and accesskeysecret are stored securely, such as in environment variables or a secure credential vault, to prevent unauthorized access.
+    
+***Use HTTPS***: Make sure that all API requests are made over HTTPS to protect sensitive data during transmission.
+
+## Global Basic Auth
 
 If [Basic Auth Mode](Config.md#basic-auth) is enabled in your COMS instance, requests to the COMS API can be authenticated using an HTTP Authorization header (type `Basic`) containing the username and password configured in COMS.
 

@@ -11,7 +11,7 @@ This page outlines the general design used for managing User Access Control to S
     - [Response Scope Expansion](#response-scope-expansion)
   - [Mode Considerations](#mode-considerations)
 - [Invite Links](#invite-links)
-  - [Public](#public)
+- [Public](#public)
 
 ## Overview
 
@@ -177,6 +177,43 @@ COMS also offers a user invite feature. Generate a time-limited, single use invi
 
 See [API Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
 
-### Public
+## Public
 
-The simplest way for a data owner to share their files is to set your object as public through the `PATCH /object/:objId/public` endpoint. When an object is public, any anonymous user or entity will be able to read and download that specific object. An object with the public flag ignores all the granular DAC permission codes for the read object operation.
+COMS allows you to enable/disable 'public' access to files in your object-storage. Public access allows anyone to access that file without authentication, either via the COMS `GET object/:objectId` route/URL or using a raw S3 object storage URL. A file set as public ignores the COMS granular permission controls. 
+The public state (true | false) of an object or bucket is included in the `GET <object|bucket>` reponse (eg `{ ..., public: true }`).
+
+COMS Public endpoints:
+- [File](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/togglePublic)
+- [Bucket or Folder](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/togglePublic)
+
+`v1.0.0` of COMS introduced the ability to set a folder(prefix) or entire bucket as public. COMS uses S3-compatible Bucket Policies to make files public. 
+
+Here's an example of the Policy added by COMS to make the folder `/permits/fishing/` in bucket `abcdef` public :
+
+```
+# coms api REQUEST: 
+# http://coms.api.gov.ba.ca/api/v1/bucket/<guid of bucket/folder>/public?public=true
+
+# Bucket policy added to object-storage server:
+{
+  Action: [ 's3:GetObject', 's3:GetObjectVersion' ],
+  # the prefix of the S3 path, representing the folder/bucket
+  Resource: 'abcdef/permits/fishing/*', 
+  Effect: 'Allow',
+  Principal: '*',
+  # all COMS-managed policies have a Sid prefixed with `coms::`
+  Sid: 'coms::abcdef/permits/fishing/' 
+}
+```
+
+### Respect for 'external' Bucket Policies
+
+Pre-existing or modified files in your object-storage must be synced with COMS using the COMS [Synchronization process](Synchronization.md). Syncronization is also required to pick up on any changes made to permissions (Bucket Policies or legacy ACL's) applied outside of the COMS/BCBox framework, using other tools (eg AWS cli. S3 Browser, etc) 
+
+- When COMS Syncs with objects, the `public` flag for an object will be `true` if an external ACL or Bucket Policy exists that makes the object public. 
+- When setting a resource (object or bucket) to public COMS preserves external Policies and ACL's and adds the COMS-managed Policy (with `Sid: coms::` prefix)
+- When setting a resource as private we preserve any external Policies. However, if resource is a single file COMS removes all ACL's on that file (ACL's are a legacy implemntation deprecated in favour or Bucket Policies)
+
+The desired end-result is that files should be identified as public if they actually are accessible without authentication.
+You should always ensure you follow the BCGOV guidelines before making files public. We emphasize this need for caution in our [BCBox documentation](https://github.com/bcgov/bcbox/wiki/Sharing-to-the-Public).
+ 

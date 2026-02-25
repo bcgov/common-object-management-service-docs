@@ -19,6 +19,7 @@ This page outlines the general usage patterns and organization of the COMS API. 
 Bucket operations offer the usual CRUD operations for bucket resource management. For example:
 
 - `CREATE /bucket` and `PATCH /bucket/{bucketId}` will pre-emptively check to see if the proposed credential changes represent a network-accessible bucket. These endpoints will yield an error if it is unable to validate the bucket.
+- The `GET /bucket` search and `PATCH /bucket/{bucketId}/public` public toggle require a backing database in order to function.
 
 ## Object
 
