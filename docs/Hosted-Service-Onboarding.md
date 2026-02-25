@@ -5,9 +5,13 @@ Some important aspects of the hosted service to consider:
 
 ### Authentication
 
-- Requests to COMS API requests must be authorized using a **User ID token** (OAuth JWT) issued in the Pathfinder SSO ['Standard'](https://github.com/bcgov/sso-keycloak/wiki#standard-service) realm. Typically a user would sign-in to your app (website) and your app would call COMS with that user's JWT.
+- Requests to COMS API requests can be authorized using a **User ID token** (OAuth JWT) issued in the Pathfinder SSO ['Standard'](https://github.com/bcgov/sso-keycloak/wiki#standard-service) realm. Typically a user would sign-in to your app (website) and your app would call COMS with that user's JWT.
 
-- Basic Auth or authentication using a service-account (eg: client credentials) is currently not available on the Hosted COMS service. This is a feature if you are self-hosting.
+- 'Machine-to-machine' or 'service account' style access to COMS operations, scoped to a specified bucket can be acheived using [Service Accounts](Authentication.md#service-accounts)
+
+- A 'global' Basic Auth is only available if you are self-hosting COMS and is not available on the Hosted COMS service.
+
+- Self-hosted COMS can also be configured to [disable authetication](Authentication.md#unauthenticated-mode) entirely
 
 ### Acquiring a Bucket
 

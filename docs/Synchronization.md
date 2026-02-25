@@ -7,6 +7,8 @@ To avoid this, COMS can be told to **synchronize** a bucket, where it looks at a
 ## The Synchronization process
 
 Clients can trigger the sync process through a [set of dedicated API endpoints](https://coms.api.gov.bc.ca/api/v1/docs#tag/Sync).
+When syncronising a folder (or entire bucket) adding the `recursive=true` query parameter will ensure all subfolders are also synced) 
+
 
 When these endpoints are called, COMS checks both the S3 bucket and its database for a list of objects in the bucket, merges them into a single list without duplicates, and enqueues each resulting object (or **job**) into a shared queue in the COMS database, before returning the number of objects enqueued.
 
