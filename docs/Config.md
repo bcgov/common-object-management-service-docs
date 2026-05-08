@@ -1,14 +1,11 @@
 This page outlines the general deployment decisions you will need to consider before standing up COMS and is mainly intended for a technical audience, and for people who want to have a better understanding of how the system features interact with each other. For instructions on running COMS, please refer to our [Application README](https://github.com/bcgov/common-object-management-service/blob/master/app/README.md).
 
-- [Object Storage](#object-storage)
-- [Authentication Modes](#authentication-modes)
-- [Bucket Credentials Encryption](#bucket-credential-encryption)
-- [Privacy Controls](#privacy-controls)
+The COMS configuration is controlled by environment variables [declared in `custom-environment-variables.json`](https://github.com/bcgov/common-object-management-service/blob/master/app/config/custom-environment-variables.json), which are parsed by the [`config` package on npm](https://www.npmjs.com/package/config). These can be created in each deployment environment.
 
-The configuration of COMS is done using the NodeJS [config](https://www.npmjs.com/package/config) library.
-environment variables for the COMS application are listed [here](https://raw.githubusercontent.com/bcgov/common-object-management-service/master/app/config/custom-environment-variables.json). These variables can be created in each deployment environment. In this page we explain these configuration options:
-
-**Note:** Some features are enabled using `enabled: "true"`. To disable the feature, omit this line (or environment variable) entirely from your config.
+!!! note
+    Some features are enabled using `enabled: "true"`. 
+    
+    To disable the feature, omit this line (or environment variable) entirely from your config.
 
 ## Object Storage
 
@@ -30,7 +27,7 @@ This group of variables define a **default** object storage location and bucket.
 COMS provides a combination of authentication modes, intended to makes COMS more *compatible* with your architecture. Depending on the roles you expect COMS to play in your use case, you will need to choose between one of the following four authentication modes:
 
 - [OIDC](#oidc-keycloak) (`OIDCAUTH`)
-- [Service Accounts](Authentication.md#service-accounts) (Available without configuration)
+- [S3 Service Account](Authentication.md#s3-service-account) (Available without configuration)
 - [Basic](#basic) (`BASICAUTH`)
 - [Full](#full) (`FULLAUTH`)
 - [Unauthenticated](#unauthenticated) (`NOAUTH`)
@@ -54,8 +51,11 @@ This mode is generally recommended for systems where you expect users to interac
 
 ### Basic
 
-This mode is for self-hosted instances of COMS where you expect to use COMS at a service-client level. Basic user/password protection is granted and enforced. Note: This provides a 'global' way to perform all operations accross all connected buckets.
-For multi-client access using bucket credentials use [Service Accounts](Authentication.md#service-accounts).
+This mode is for self-hosted instances of COMS where you expect to use COMS at a service-client level. Basic user and password protection is granted and enforced.
+
+This provides a 'global' way to perform all operations across all connected buckets.
+
+For multi-client access using S3 bucket credentials, use [S3 Service Accounts](Authentication.md#s3-service-account).
 
 - Clients require a Basic Authorization header ([RFC 7617](https://datatracker.ietf.org/doc/html/rfc7617))
 - Provides an "all or nothing" permission model
@@ -152,4 +152,6 @@ In addition, the following two endpoints that search/list all tags (or metadata)
 - `GET /metadata`
 
 All behaviour affected by this Privacy is ignored when the API request is authenticated using the [Basic](#basic) Authentication.
-For more details. Please see the COMS API Spec.
+
+!!! info
+    For more details, please see the [COMS OpenAPI Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/readObject).

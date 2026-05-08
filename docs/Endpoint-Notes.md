@@ -1,6 +1,7 @@
 This page outlines the general usage patterns and organization of the COMS API. This article is intended for a technical audience, and for people who are planning on using the API endpoints.
 
-**The COMS API is documented using the [Open API Specification](https://coms.api.gov.bc.ca/api/v1/docs)**
+!!! info
+    The COMS API is documented using the [OpenAPI Specification](https://coms.api.gov.bc.ca/api/v1/docs).
 
 ## Table of Contents
 
