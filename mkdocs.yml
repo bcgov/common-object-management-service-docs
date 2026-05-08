@@ -18,7 +18,6 @@ nav:
   - Permissions: Permissions.md
   - Metadata and Tags: Metadata-Tag.md
   - Managing buckets: Buckets.md
-  - Service Account: Service-Account.md  
   - Synchronization: Synchronization.md  
   - Use-Case Examples: Use-Case-Examples.md
 - Deployment Guide:

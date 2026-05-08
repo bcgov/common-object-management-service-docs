@@ -1,29 +1,16 @@
 This page outlines the general design used for managing User Access Control to S3 Objects. This page targets users and developers who are planning on implementing and leveraging COMS.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Access Model](#access-model)
-  - [Endpoints](#endpoints)
-- [Permission Codes](#permission-codes)
-  - [Bucket/Object Inheritance](#bucketobject-inheritance)
-    - [Examples](#examples)
-    - [Response Scope Expansion](#response-scope-expansion)
-  - [Mode Considerations](#mode-considerations)
-- [Invite Links](#invite-links)
-- [Public](#public)
-
 ## Overview
 
-One of the core features of COMS is its focus on leveraging your specified Identity and Access Management (IAM) provider to manage access control and permissions to your resources. Secured access bucket and object resources are enforced when COMS is running in either OIDCAUTH or FULLAUTH mode. There are several notable nuances to how COMS leverages these permissions that we will discuss in further depth below.
+One of the core features of COMS is its focus on leveraging your specified Identity and Access Management (IAM) provider to manage access control and permissions to your resources. Secured access bucket and object resources are enforced when COMS is running in either `OIDCAUTH` or `FULLAUTH` mode. There are several notable nuances to how COMS leverages these permissions that we will discuss in further depth below.
 
 ## Access Model
 
 COMS leverages a Discretional Access Control (DAC) model for granting access to and sharing buckets and objects. This model is used to to maximize the ability for users and clients to be able to choose at will who they wish to share their resources with. The primary benefits of the DAC model are:
 
-1. Simplicity - as long as a user has a permission attached to the resource, they will be able to access the resource.
-1. Flexibility - decentralized access control management, allowing resource owners to grant and revoke access to their objects at will without the overhead of going through a chain of command.
-1. Granularity - the data owner is able to add or remove access permissions based on individual needs and concerns.
+1. **Simplicity** - as long as a user has a permission attached to the resource, they will be able to access the resource.
+2. **Flexibility** - decentralized access control management, allowing resource owners to grant and revoke access to their objects at will without the overhead of going through a chain of command.
+3. **Granularity** - the data owner is able to add or remove access permissions based on individual needs and concerns.
 
 The key thing to take from COMS access control model is its decentralized design. The original creator of the resource will have general ownership rights to share and distribute their objects at will.
 
@@ -40,17 +27,20 @@ Any authorized user will be able to query for the current permission states to d
 
 ## Permission Codes
 
-COMS DAC model contains 5 discrete permission codes. Each of the codes represents a different set of permissions and actions that are allowed to be performed on the resource. For the most part, the permissions follow general CRUD principles and should be relatively self-explanatory.
+The COMS DAC model contains 5 discrete permission codes. Each of the codes represents a different set of permissions and actions that are allowed to be performed on the resource. For the most part, the permissions follow general CRUD principles and should be relatively self-explanatory.
 
-| PermCode | Permission | Description |
-| --- | --- | --- |
-| `CREATE` | Create | Grants resource creation permission. Normally only the owner will have this permission assigned. |
-| `READ` | Read | Grants resource read permission. Ignored when in public mode for only objects. |
-| `UPDATE` | Update | Grants resource update permission. Allows user to upload a new version and/or edit metadata/tags for the object, or to edit bucket details. |
-| `DELETE` | Delete | Grants resource deletion permission. Allows user to delete objects and versions. |
-| `MANAGE` | Manage | Grants resource permission management. Allows the user to add/remove these permissions to other users. |
+| PermCode | Permission | Description                                                                                                                                 |
+| -------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CREATE` | Create     | Grants resource creation permission. Normally only the owner will have this permission assigned.                                            |
+| `READ`   | Read       | Grants resource read permission. Ignored when in public mode for only objects.                                                              |
+| `UPDATE` | Update     | Grants resource update permission. Allows user to upload a new version and/or edit metadata/tags for the object, or to edit bucket details. |
+| `DELETE` | Delete     | Grants resource deletion permission. Allows user to delete objects and versions.                                                            |
+| `MANAGE` | Manage     | Grants resource permission management. Allows the user to add/remove these permissions to other users.                                      |
 
-Note that should you have the `MANAGE` permcode, it is possible for you to delete and lock yourself out of your own resources if you are not careful! COMS does not provide any safeguards for accidental lockouts when authenticating as a user. In the event this occurs, you must contact the custodian of your COMS instance to restore your permissions on the affected resources.
+!!! warning
+    If you have `MANAGE` permissions, it is possible to delete that permission on yourself. This will lock you out of your own resources!
+
+    COMS does not have any safeguards for accidental lockouts. You can restore access by using `PUT /permission` with [other modes of authentication](Authentication.md) if enabled, but otherwise you must contact the custodian of your COMS instance to restore your permissions on the affected resources.
 
 ### Bucket/Object Inheritance
 
@@ -58,7 +48,7 @@ As of COMS v0.4.0, there is now a multi-leveled permission system relating to bo
 
 - Permission grants and revocations focus on binding a user to a specific resource with a specific permission code.
 - Objects reside in specific buckets. As such, permissions on objects can be are now computed based on whether you have permissions in either the bucket or the object.
-- You will be able to expand the response scope to also include inherited permissions by either adding in the `bucketPerms` or `objectPerms` query parameter on the respective endpoints
+- You will be able to expand the response scope to also include inherited permissions, by either adding in the `bucketPerms` or `objectPerms` query parameter on the respective endpoints.
 
 #### Examples
 
@@ -177,20 +167,26 @@ COMS also offers a user invite feature. Generate a time-limited, single use invi
 
 See [API Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
 
-## Public
+## Public access
 
-COMS allows you to enable/disable 'public' access to files in your object-storage. Public access allows anyone to access that file without authentication, either via the COMS `GET object/:objectId` route/URL or using a raw S3 object storage URL. A file set as public ignores the COMS granular permission controls. 
-The public state (true | false) of an object or bucket is included in the `GET <object|bucket>` reponse (eg `{ ..., public: true }`).
+COMS allows you to enable public access to files, as well as buckets linked to your object storage.
 
-COMS Public endpoints:
-- [File](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/togglePublic)
-- [Bucket or Folder](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/togglePublic)
+This allows anyone to access files without authentication, using the COMS `GET object/:objectId` endpoint or the raw S3 object storage URL. A file set as public ignores the COMS granular permission controls.
 
-`v1.0.0` of COMS introduced the ability to set a folder(prefix) or entire bucket as public. COMS uses S3-compatible Bucket Policies to make files public. 
+Bucket marked as public can be accessed through the same endpoint as non-public buckets: `GET bucket/:bucketId`.
 
-Here's an example of the Policy added by COMS to make the folder `/permits/fishing/` in bucket `abcdef` public :
+The public state of an object or bucket (which can be `true` or `false`) is included in the `GET <object|bucket>` response (eg `{ ..., public: true }`).
 
-```
+!!! info
+    See the OpenAPI specification for details on the endpoints that toggle the public status of a file or bucket:
+      - [File](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/togglePublic)
+      - [Bucket or Folder](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/togglePublic)
+
+`v1.0.0` of COMS introduced the ability to set a folder(prefix) or entire bucket as public. 
+
+COMS uses S3 bucket policies to store the public state of files and folders. Here's an example of the Policy added by COMS to make the folder `/permits/fishing/` in bucket `abcdef` public :
+
+```sh
 # coms api REQUEST: 
 # http://coms.api.gov.ba.ca/api/v1/bucket/<guid of bucket/folder>/public?public=true
 
@@ -206,14 +202,31 @@ Here's an example of the Policy added by COMS to make the folder `/permits/fishi
 }
 ```
 
-### Respect for 'external' Bucket Policies
+### Respect for externally-set bucket policies
 
-Pre-existing or modified files in your object-storage must be synced with COMS using the COMS [Synchronization process](Synchronization.md). Syncronization is also required to pick up on any changes made to permissions (Bucket Policies or legacy ACL's) applied outside of the COMS/BCBox framework, using other tools (eg AWS cli. S3 Browser, etc) 
+Pre-existing or modified files in your object storage must be synced with COMS using the COMS [synchronization process](Synchronization.md). 
 
-- When COMS Syncs with objects, the `public` flag for an object will be `true` if an external ACL or Bucket Policy exists that makes the object public. 
-- When setting a resource (object or bucket) to public COMS preserves external Policies and ACL's and adds the COMS-managed Policy (with `Sid: coms::` prefix)
-- When setting a resource as private we preserve any external Policies. However, if resource is a single file COMS removes all ACL's on that file (ACL's are a legacy implemntation deprecated in favour or Bucket Policies)
+Synchronization is also required to pick up any changes made to permissions ([Bucket Policies](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-policies.html) or [legacy ACLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html)) applied outside of the COMS/BCBox framework, using other tools (e.g. AWS CLI. S3 Browser, etc).
+
+- When syncing objects, the COMS `public` flag is set to `true`, if there is an external ACL or Bucket Policy that makes the object public. 
+- When setting an object or bucket to public in COMS, the external policies and ACLs are preserved. COMS adds a S3 policy that enables public access, which will include a [`Sid`](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html) with `coms::` prefixed.
+- When setting an object or public as private, externally-set policies are preserved. However, for single files, COMS will remove all of its ACLs.
+
+!!! info
+    ACLs are removed because they are a legacy mechanism. Although they are not deprecated as of writing, bucket policies are favoured over ACLs.
+
+    [More info on S3 IAM policies, bucket policies, and ACLs](https://aws.amazon.com/blogs/security/iam-policies-and-bucket-policies-and-acls-oh-my-controlling-access-to-s3-resources/)
 
 The desired end-result is that files should be identified as public if they actually are accessible without authentication.
-You should always ensure you follow the BCGOV guidelines before making files public. We emphasize this need for caution in our [BCBox documentation](https://github.com/bcgov/bcbox/wiki/Sharing-to-the-Public).
- 
+
+You should always ensure you follow BC Government guidelines [before making files public](https://github.com/bcgov/bcbox/wiki/Sharing-to-the-Public).
+
+## IDP-level permissions
+
+Permissions may also be applied at the identity provider (IDP) level, to any bucket or object. This allows any user authenticating with the specified identity provider to receive the permission.
+
+IDP-level permissions work in the same way as user-specific permissions. They can coexist with any bucket or object permissions and are additive. 
+
+For instance, if a user has `DELETE` permissions on a bucket, and their identity provider has `READ` on the same bucket, the user  has both `READ` and `DELETE` permissions on that bucket.
+
+The endpoints for reading and manipulating IDP-level permissions can be found at the path `/permission/idp`.

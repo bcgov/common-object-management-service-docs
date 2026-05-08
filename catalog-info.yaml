@@ -10,7 +10,7 @@ metadata:
     bcgovpubcode.gov.bc.ca/ministry: WLRS
     bcgovpubcode.gov.bc.ca/product_name: Common Object Management Service
     bcgovpubcode.gov.bc.ca/product_acronym: COMS
-    bcgovpubcode.gov.bc.ca/product_owner: Sharolyn Hurley
+    bcgovpubcode.gov.bc.ca/product_owner: Shabari Kunnumel
     developer.gov.bc.ca/source_template: default/docs-template
 spec:
   type: documentation

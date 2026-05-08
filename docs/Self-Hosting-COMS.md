@@ -20,10 +20,12 @@ To run COMS on your local computer, see the following::
 - [Application README](https://github.com/bcgov/common-object-management-service/blob/master/app/README.md)
 - [Docker Image](https://hub.docker.com/r/bcgovimages/common-object-management-service/)
 - [GitHub repo](https://github.com/bcgov/common-object-management-service/)
-- [API Specifiction](https://coms.api.gov.bc.ca/api/v1/docs)
+- [OpenAPI specification](https://coms.api.gov.bc.ca/api/v1/docs)
 
-## Contact us to find out more
+## Contact us
 
-COMS is developed by the [Common Services Team](https://bcgov.github.io/common-service-showcase/).<br />
-Email: <NR.CommonServiceShowcase@gov.bc.ca><br />
-Community help: [Rocket.Chat](https://chat.developer.gov.bc.ca/channel/nr-common-services-showcase)
+COMS is developed by the [Common Services Team](https://bcgov.github.io/common-service-showcase/), under the Economic Opportunities Division at Connected Services BC.
+
+**Email:** NR.CommonServiceShowcase@gov.bc.ca
+
+**Community help:** [MS Teams channel](https://teams.microsoft.com/l/channel/19%3A4e700366d8aa46479a7998ffa7c86a6a%40thread.tacv2/COMS%20and%20BCBox?groupId=bef8086f-20c7-43a4-bd07-29ce764e818c&tenantId=6fdb5200-3d0d-4a8a-b036-d3685e359adc)

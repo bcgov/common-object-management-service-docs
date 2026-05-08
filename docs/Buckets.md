@@ -11,7 +11,7 @@ If you are self-hosting COMS you can also manage permissions for any object or b
 
 ### Using the Bucket **Key**
 
-When you create a bucket in COMS, technically you are 'mounting' your  S3 bucket (actual bucket provisioned) at a specified path in the `key` property of the [createBucket](https://coms-dev.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/createBucket) request body.
+When you create a bucket in COMS, technically you are 'mounting' your S3 bucket (actual bucket provisioned) at a specified path in the `key` property of the [createBucket](https://coms-dev.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/createBucket) request body.
 
 COMS will only operate with objects at that 'folder' within the actual bucket. A COMS `bucket` can more accurately be thought of as a 'mount' to a single path within a bucket.
 
