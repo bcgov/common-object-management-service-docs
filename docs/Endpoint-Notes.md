@@ -3,18 +3,6 @@ This page outlines the general usage patterns and organization of the COMS API. 
 !!! info
     The COMS API is documented using the [OpenAPI Specification](https://coms.api.gov.bc.ca/api/v1/docs).
 
-## Table of Contents
-
-- [Bucket](#bucket)
-- [Object](#object)
-  - [Metadata](#metadata)
-  - [Tag](#tag)
-  - [Versions](#versions)
-- [Permission](#permission)
-- [Invite URL's](#invite-urls)
-- [Sync](#sync)
-- [User](#user)
-
 ## Bucket
 
 Bucket operations offer the usual CRUD operations for bucket resource management. For example:

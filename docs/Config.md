@@ -3,7 +3,7 @@ This page outlines the general deployment decisions you will need to consider be
 The COMS configuration is controlled by environment variables [declared in `custom-environment-variables.json`](https://github.com/bcgov/common-object-management-service/blob/master/app/config/custom-environment-variables.json), which are parsed by the [`config` package on npm](https://www.npmjs.com/package/config). These can be created in each deployment environment.
 
 !!! note
-    Some features are enabled using `enabled: "true"`. 
+    Some features are enabled using `enabled: "true"`.
     
     To disable the feature, omit this line (or environment variable) entirely from your config.
 

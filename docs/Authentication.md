@@ -40,12 +40,13 @@ The credentials must match that of the object or COMS bucket's underlying object
 ### Credentials
 
 Object storage bucket credentials are to be provided through the following HTTP headers:
+
 * A basic authorization header
-	* **Username:** the access key ID (or username) of the object storage user account; e.g. `energy_user_1`
-	* **Password:** the secret access key (or password) of the object storage user account; e.g. `f6jGUSrmd9gdQg6`
-* 2 additional headers
-	* **`x-amz-bucket`:** the name (or ID) of the object storage bucket; e.g. `yxwgj`
-	* **`x-amz-endpoint`:** the object storage service endpoint; e.g. `https://nrs.objectstore.gov.bc.ca`
+  * **Username:** the access key ID (or username) of the object storage user account; e.g. `energy_user_1`
+  * **Password:** the secret access key (or password) of the object storage user account; e.g. `f6jGUSrmd9gdQg6`
+* 2 additional headers:
+  * **`x-amz-bucket`:** the name (or ID) of the object storage bucket; e.g. `yxwgj`
+  * **`x-amz-endpoint`:** the object storage service endpoint; e.g. `https://nrs.objectstore.gov.bc.ca`
 
 The credentials must match the ones previously provided to COMS when the bucket was created or updated. Attempting to use a different set of credentials – even if they valid for the given object storage bucket – will result in an error.
 
@@ -61,7 +62,7 @@ Make sure that all API requests are made over HTTPS to protect sensitive data du
 
 ## Global Basic Auth
 
-If [Basic Auth Mode](Config.md#basic-auth) is enabled in your COMS instance, requests to the COMS API can be authenticated using an HTTP Basic Authorization header containing the username and password configured in COMS.
+If [Basic Auth Mode](Config.md#basic) is enabled in your COMS instance, requests to the COMS API can be authenticated using an HTTP Basic Authorization header containing the username and password configured in COMS.
 
 This mode offers more direct access for a 'service account' authorized in the scope of the application rather than for a specific user and by-passes the COMS object/bucket permission model.
 
@@ -69,4 +70,4 @@ Global Basic Auth is not available on the [hosted service](Hosted-Service-Onboar
 
 ## Unauthenticated Mode
 
-[Unauthenticated Mode](Config.md#unauthenticated-auth) configuration is generally recommended when you expect to run COMS in a highly secured network environment, and do not have concerns about access control to objects as you have another application handling that already.
+[Unauthenticated Mode](Config.md#unauthenticated) configuration is generally recommended when you expect to run COMS in a highly secured network environment, and do not have concerns about access control to objects as you have another application handling that already.
