@@ -1,7 +1,7 @@
 ## v1.0.0 - COMS Service Account (basic auth) access, Public Folders, Recursive Sync/Permission options, 
 
 * [x] COMS client [Service Account access](Authentication.md#s3-service-account)
-* [x] [Public folders](Permissions.md#public) - (share folders with unauthenticated users in BCBox)
+* [x] [Public folders](Permissions.md#public-access) - (share folders with unauthenticated users in BCBox)
 * [x] Set files and folders as Public with S3 Bucket Policies
 * [x] Recursive sync (syncing cascades down through subfolders)
 * [x] Recursive folder permissions management

@@ -1,14 +1,5 @@
 This page outlines the general design used for managing Metadata and Tags on S3 Objects. This page is mainly targeted for users and for people who are planning on implementing and leveraging the API endpoints.
 
-## Table of Contents
-
-- [Overview](#overview)
-  - [Metadata](#metadata)
-  - [Tag](#tag)
-- [Usage in COMS](#usage-in-coms)
-  - [General Operations](#general-operations)
-  - [Search](#search)
-
 ## Overview
 
 In general, metadata is "data that provides information about other data", but is not considered a part of the content of the data itself. Your line of business may require metadata to do things like the following:
@@ -67,13 +58,11 @@ This search works using a set intersection model; you can be as specific or broa
 For example, to search objects with the following criteria...
 
 * **Metadata:** `foo=bar`, `baz=bam`
-
 * **Tags:** `x=a`, `y=b`
 
 ...add the following to the API call:
 
 * **Headers:** `x-amz-meta-foo=bar` ,  `x-amz-meta-baz=bam`
-
 * **Query parameters:** `tagset[x]=a&tagset[y]=b`
 
 The response will be a list of objects that have all of the specified metadata and tags (as expected for a set intersection).

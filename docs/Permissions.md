@@ -163,9 +163,16 @@ For more specific information on COMS deployment modes and how they differ, plea
 
 ## Invite Links
 
-COMS also offers a user invite feature. Generate a time-limited, single use invitation token which can be used by an authenticated user to acquire `READ` or other permissions to a specific resource (object or bucket). Optional email-user validation may be specified to ensure the link is only used by the intended recipient. To create an invite link one must have the MANAGE permission on the resource being shared.
+COMS also offers a user invite feature.
 
-See [API Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
+Generate a time-limited, single use invitation token, which can be used by an authenticated user to acquire any specified permissions to a specific resource (object or bucket).
+
+Optional email-user validation may also be specified to ensure the link is only used by the intended recipient.
+
+To create an invite link, the user must have the `MANAGE` permission on the resource being shared.
+
+!!! info
+  For more details on creating invite linkns, see the [OpenAPI specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
 
 ## Public access
 
@@ -179,10 +186,11 @@ The public state of an object or bucket (which can be `true` or `false`) is incl
 
 !!! info
     See the OpenAPI specification for details on the endpoints that toggle the public status of a file or bucket:
-      - [File](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/togglePublic)
-      - [Bucket or Folder](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/togglePublic)
+    
+    - [File](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/togglePublic)
+    - [Bucket or Folder](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/togglePublic)
 
-`v1.0.0` of COMS introduced the ability to set a folder(prefix) or entire bucket as public. 
+`v1.0.0` of COMS introduced the ability to set a folder(prefix) or entire bucket as public.
 
 COMS uses S3 bucket policies to store the public state of files and folders. Here's an example of the Policy added by COMS to make the folder `/permits/fishing/` in bucket `abcdef` public :
 

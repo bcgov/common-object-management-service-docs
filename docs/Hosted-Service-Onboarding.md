@@ -41,6 +41,7 @@ Some important aspects of the hosted service to consider:
 As part of your development workflow, ensure your application is using the correct COMS environment. **The Hosted COMS service only accepts User Auth tokens issued in the corresponding SSO 'Standard' realm.**
 
 COMS environments:
+
 - **Development:** [https://coms-dev.api.gov.bc.ca/api/v1/](https://coms.api.gov.bc.ca/api/v1/)
 - **Test:** [https://coms-test.api.gov.bc.ca/api/v1/](https://coms.api.gov.bc.ca/api/v1/) 
 - **Production:** [https://coms.api.gov.bc.ca/api/v1/](https://coms.api.gov.bc.ca/api/v1/)
