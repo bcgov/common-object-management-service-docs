@@ -5,7 +5,9 @@
 * [x] Set files and folders as Public with S3 Bucket Policies
 * [x] Recursive sync (syncing cascades down through subfolders)
 * [x] Recursive folder permissions management
-* [x] Bug fixes for deleted file syncing 
+* [x] Bug fixes for deleted file syncing
+* [x] IDP-wide permissions management
+* [ ] IDIR MFA support
 
 ## v0.9.0 - CopyVersion, Sync and Folder mapping improvements
 
