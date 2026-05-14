@@ -23,7 +23,8 @@ Other general key notes to consider when implementing user-defined metadata are 
 - The size of user-defined metadata is measured by taking the sum of the number of bytes in the UTF-8 encoding of each key and value.
 - Avoid using characters outside the US-ASCII and UTF-8 standards for metadata values
 
-More details found here: [AWS: Working with object metadata](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html)
+!!! info
+    Please see the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMetadata.html) for more details on working with S3 object metadata.
 
 ### Tag
 
@@ -37,7 +38,8 @@ Other general key notes to consider when implementing user-defined tags are the 
 - A tag value can be up to 256 Unicode characters in length.
 - Keys and values are case sensitive.
 
-More details found here: [AWS: Categorizing your storage using tags](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html)
+!!! info
+    Please see the [AWS documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html) for more details on using S3 tags.
 
 ## Usage in COMS
 

@@ -101,7 +101,7 @@ x-amz-endpoint: <endpoint>
 
 This mode is generally recommended for systems that need both user level and administrative level access to objects. This grants the full suite of functionality COMS offers, but care must be taken to ensure that access to objects is done securely from your line of business application.
 
-- Both OIDC and [Basic](#basic) and [OIDC](#oidc-keycloak) authentication modes are simultaneously enabled
+- Both [Basic](#basic) and [OIDC](#oidc-keycloak) authentication modes are simultaneously enabled
 
 ### Unauthenticated
 
@@ -127,7 +127,7 @@ In a multi-bucket COMS deployment (where buckets exist in the COMS database, in 
 
 COMS can be configured to run with a stricter content privacy masking. This is typically required when you want to limit object search results to just data that the current user has `READ` permission for.
 
-By default, COMS will run in the standard permissive mode, allowing for greater search and discovery features, unless the `SERVER_PRIVACY_MASK` environment variable is set to true.
+By default, COMS will run in the standard permissive mode, allowing for greater search and discovery features, unless the `SERVER_PRIVACY_MASK` environment variable is set to true:
 
 ```sh
   "server": {
@@ -135,6 +135,9 @@ By default, COMS will run in the standard permissive mode, allowing for greater 
     ...
   }
 ```
+
+!!! note
+    The following restrictions do not apply when the API request is authenticated using [basic authentication](#basic) or [S3 service account](Authentication.md#s3-service-account).
 
 When enabled, the COMS API endpoints that search for objects or list objects matching input parameters will not expose metadata or tags related to objects.
 
@@ -146,12 +149,51 @@ Requests to the following endpoints will scope the results to data related to ob
 - `GET /version/tagging`
 - `GET /version/metadata`
 
-In addition, the following two endpoints that search/list all tags (or metadata) that exist in a COMS database will only return the tag/metadata `Key` and not allow you to filter by `Value`:
+The endpoints that search and list all tags (or metadata) in a COMS database will only return the tag/metadata `Key`, and not allow you to filter by `Value`:
 
 - `GET /tagging`
 - `GET /metadata`
 
-All behaviour affected by this Privacy is ignored when the API request is authenticated using the [Basic](#basic) Authentication.
-
 !!! info
     For more details, please see the [COMS OpenAPI Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/readObject).
+
+### Additional restrictions on non-elevated users
+
+Additional restrictions apply to users that do not belong to a [list of "elevated" identity providers](https://github.com/bcgov/common-object-management-service/blob/master/app/src/components/constants.js#L31).
+
+!!! note
+    On the hosted service, only IDIR users are considered elevated users.
+
+Buckets cannot be created nor deleted, have their credentials updated, or synced:
+
+- `PUT /bucket`
+- `PATCH /bucket/:bucketId/`
+- `DELETE /bucket`
+- `GET /bucket/:bucketId/sync`
+
+Permissions cannot be added or removed:
+
+- `PUT /permission/bucket/:bucketId`
+- `PUT /permission/object/:objectId`
+- `PUT /permission/idp/bucket/:bucketId`
+- `PUT /permission/idp/object/:objectId`
+- `DELETE /permission/bucket/:bucketId`
+- `DELETE /permission/object/:objectId`
+- `DELETE /permission/idp/bucket/:bucketId`
+- `DELETE /permission/idp/object/:objectId`
+
+Buckets and objects cannot be made public or non-public:
+
+- `PATCH /bucket/:bucketId/public`
+- `PATCH /object/:objectId/public`
+
+Invitation tokens cannot be created:
+
+- `POST /permission/invite`
+
+Additionally, when searching for users (via the `GET /user` endpoint), one or more of the following paramters must be provided:
+
+- Complete email address
+- `userId`
+- `identityId`
+- `username`
