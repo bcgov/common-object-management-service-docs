@@ -4,7 +4,7 @@ The COMS API is available as a hosted service for BC Government client applicati
 !!! info
     Not sure whether to use the shared hosted service, or use your own? [See here for a comparison](Hosting-Considerations.md).
     
-    If you want to self-host instead, [see here](Self-Hosting-COMS.md) to get started.
+    Self-hosting? [Get started here](Self-Hosting-COMS.md).
 
 Some important aspects of the hosted service to consider:
 

@@ -15,24 +15,23 @@ The following steps describe how a document management interface in your applica
 2. The user fills in a web form on your website attaching a document from their computer (a common user experience).
 3. When the user submits this web form, the client application sends a HTTP multipart/form-data POST to the [Create Object](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/createObjects) endpoint (attaching the User A's JWT in an Authorization header).
 4. COMS will do the following:
-
-    1. Inspect the JWT and create a user record in the COMS database
-    2. Pass the file to an S3 bucket
-    3. Grant all PERMISSIONS to that user
+  1. Inspect the JWT and create a user record in the COMS database
+  2. Pass the file to an S3 bucket
+  3. Grant all permissions to that user
 
 #### Sharing a file
 
 The client application can do the following:
-    - Call the COMS [User Search](https://coms.api.gov.bc.ca/api/v1/docs#tag/User/operation/searchUsers) endpoint to return a list of matching users in the COMS database.
-    - Call the [Add Permission](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/objectAddPermissions) endpoint to grant a Government employee READ permission on the file.
+
+- Call the COMS [User Search](https://coms.api.gov.bc.ca/api/v1/docs#tag/User/operation/searchUsers) endpoint to return a list of matching users in the COMS database.
+- Call the [Add Permission](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/objectAddPermissions) endpoint to grant a Government employee READ permission on the file.
 
 #### Downloading a file
 
 1. `User B` logs in to the client application.
 2. Client application makes request to [Read Object](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/readObject) endpoint (with User B's JWT in an Authorization header):
-
-    1. COMS will verify User B using the JWT and look up permissions for the file in the COMS database
-    2. COMS will then respond with a redirect to a pre-signed url to the source object in the storage server or allow direct download via proxy. Read the section on [OIDC AUthentication](Authentication.md#authentication-flow-for-readobject) for more details.
+  1. COMS will verify User B using the JWT and look up permissions for the file in the COMS database
+  2. COMS will then respond with a redirect to a pre-signed url to the source object in the storage server or allow direct download via proxy. Read the section on [OIDC Authentication](Authentication.md#authentication-flow-for-readobject) for more details.
 
 !!! info
-    For full implementation details of the COMS API, see the [GitHUb repository for BCBox](https://github.com/bcgov/bcbox).
+    For full implementation details of the COMS API, see the [GitHub repository for BCBox](https://github.com/bcgov/bcbox).

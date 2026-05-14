@@ -172,7 +172,7 @@ Optional email-user validation may also be specified to ensure the link is only 
 To create an invite link, the user must have the `MANAGE` permission on the resource being shared.
 
 !!! info
-  For more details on creating invite linkns, see the [OpenAPI specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
+    For more details on creating invite links, see the [OpenAPI specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite).
 
 ## Public access
 
