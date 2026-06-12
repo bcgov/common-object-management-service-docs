@@ -111,6 +111,7 @@ To report bugs/issues/features requests, please email the Developer Experience t
 The full documentation for MkDocs (which is powering the DevHub TechDocs function) is at the [MkDocs website](https://www.mkdocs.org/user-guide/writing-your-docs/). Note that not all content on the site will be applicable to DevHub's use of MkDocs.
 
 ## Contributing
+
 If you would like to contribute, please see our [contributing](CONTRIBUTING.md) guidelines.
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE-OF-CONDUCT.md). By participating in this project you agree to abide by its terms.

@@ -9,18 +9,33 @@ The COMS configuration is controlled by environment variables [declared in `cust
 
 ## Object Storage
 
-This group of variables define a **default** object storage location and bucket. A default is required and provides the scope for various COMS endpoints where bucketId is optional. If no bucketId parameter is passed, the default bucket will be used.
+These variables define a **default** object storage location and bucket. 
 
-```sh
+A default bucket is required and provides the scope for various COMS endpoints where `bucketId` is optional. 
+
+If no `bucketId` parameter is passed, the default bucket will be used.
+
+*Sample configuration:*
+
+```json
 "objectStorage": {
-  "accessKeyId": "<Access Key ID>", # eg: The ECS Object User or IAM ID
-  "bucket": "<ID or name of a bucket>" # eg: climatedocs,
-  "defaultTempExpiresIn": "<time in milliseconds>" # expiry time for pre-signed urls (eg `300`),
-  "endpoint": "<Object Storage service host url>" # eg: `https://nrs.objectstore.gov.bc.ca`,
-  "key": "<Path Prefix where COMS will mount bucket>" # eg: `2024/wildfires`,
-  "secretAccessKey": "<Secret Access Key>" # eg: The ECS Object User’s Secret Key or IAM Secret Access Key
+  "accessKeyId": "access-key-id",
+  "bucket": "climatedocs",
+  "defaultTempExpiresIn": "300",
+  "endpoint": "https://nrs.objectstore.gov.bc.ca",
+  "key": "2024/wildfires",
+  "secretAccessKey": "secret-access-key"
 },
 ```
+
+| Key                    | Value                                                     |
+| ---------------------- | --------------------------------------------------------- |
+| `accessKey`            | Access Key ID                                             |
+| `bucket`               | ID or name of the bucket                                  |
+| `defaultTempExpiresIn` | Expiry time for pre-signed urls                           |
+| `endpoint`             | Object Storage service host url                           |
+| `key`                  | Path Prefix where COMS will mount bucket                  |
+| `secretAccessKey`      | The ECS Object User’s Secret Key or IAM Secret Access Key |
 
 ## Authentication Modes
 
@@ -38,7 +53,7 @@ This mode is generally recommended for systems where you expect users to interac
 
 - Clients require an OIDC JWT Authorization token header ([RFC 9068](https://datatracker.ietf.org/doc/html/rfc9068))
 - In this mode, COMS should be configured to use the same OIDC realm as your client application
-- If a user has logged into your application, COMS can also verify the identity of the current user with the same existing JWT (jwt.sub or configured identity key)
+- If a user has logged into your application, COMS can also verify the identity of the current user with the same existing JWT (`jwt.sub` or configured identity key)
 - The JWT user subject or any identity key claim (configurable with the `identityKey`) will serve as the primary identifier for that user entity in the database
 - File permissions can be granted and managed for users through the COMS API
 
@@ -70,7 +85,7 @@ For multi-client access using S3 bucket credentials, use [S3 Service Accounts](A
 },
 ```
 
-Basic Auth can also be used where machine-to-machine API access is required. This can be set by enabling the s3AccessMode in the configuration, which is enabled by default on all COMS environments. This setup is suitable for service-level account access.
+Basic Auth can also be used where machine-to-machine API access is required. This can be set by enabling the `s3AccessMode` in the configuration, which is enabled by default on all COMS environments. This setup is suitable for service-level account access.
 
 ```sh
 "basicAuth": {
@@ -141,7 +156,7 @@ By default, COMS will run in the standard permissive mode, allowing for greater 
 
 When enabled, the COMS API endpoints that search for objects or list objects matching input parameters will not expose metadata or tags related to objects.
 
-Requests to the following endpoints will scope the results to data related to objects that the current user has READ permission for (either through the object, or inherited through the bucket in which the object exists.):
+Requests to the following endpoints will scope the results to data related to objects that the current user has READ permission for (either through the object, or inherited through the bucket in which the object exists):
 
 - `GET /object`
 - `GET /object/tagging`
@@ -191,7 +206,7 @@ Invitation tokens cannot be created:
 
 - `POST /permission/invite`
 
-Additionally, when searching for users (via the `GET /user` endpoint), one or more of the following paramters must be provided:
+Additionally, when searching for users (via the `GET /user` endpoint), one or more of the following parameters must be provided:
 
 - Complete email address
 - `userId`
