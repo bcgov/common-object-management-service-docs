@@ -85,9 +85,3 @@ These endpoints serve as a reference point for finding the right user and identi
     - COMS API responses will always return `idir` instead of `azureidir`
         
     This behaviour applies to *all* COMS endpoints that accept an `idp` query parameter.
-
-!!! info
-    See the OpenAPI specification for details on the endpoints that toggle the public status of a file or bucket:
-    
-    - [File](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/togglePublic)
-    - [Bucket or Folder](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/togglePublic)
