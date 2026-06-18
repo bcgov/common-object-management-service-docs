@@ -1,4 +1,4 @@
-This page outlines the architecture and deployment features of the BC Gov Hosted COMS service. It is mainly intended for a technical audience, and for people who want to have a better understanding of how we have the service deployed.
+This page outlines the architecture and deployment features of the BC Government Hosted COMS service. It is mainly intended for a technical audience, and for people who want to have a better understanding of how we have the service deployed.
 
 **Note:** For more details of the COMS application itself and how it works, see the [Architecture](Architecture.md) overview.
 
@@ -12,11 +12,11 @@ This page outlines the architecture and deployment features of the BC Gov Hosted
 
 ## Infrastructure
 
-The BC Govt. Hosted COMS service runs on the OpenShift container ecosystem. The following diagram provides a general logical overview of main component relations. Main network traffic flows are shown in fat arrows, while secondary network traffic relations are shown with a simple black line.
+The BC Government Hosted COMS service runs on the OpenShift container ecosystem. The following diagram provides a general logical overview of main component relations. Main network traffic flows are shown in fat arrows, while secondary network traffic relations are shown with a simple black line.
 
 ![Hosted COMS Architecture](images/coms_architecture.png)
 
-**Figure 1 - The general infrastructure and network topology of the BC Govt. hosted COMS**
+**Figure 1 - The general infrastructure and network topology of the BC Government hosted COMS**
 
 ### High Availability
 
@@ -24,11 +24,11 @@ The COMS API and Database are all designed to be highly available within an Open
 
 ### Network Connectivity
 
-In general, all network traffic enters through the BC Govt. API Gateway. A specifically tailored Network Policy rule exists to allow only network traffic we expect to receive from the API Gateway. When a client connects to the COMS API, they will be going through OpenShift's router and load balancer before landing on the API gateway. That connection then gets forwarded to one of the COMS API pod replicas. Figure 1 represents the general network traffic direction with the outlined fat arrows. The direction of those arrows represents which component is initializing the TCP/IP connection.
+In general, all network traffic enters through the BC Government's [API Gateway](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/concepts/services/). A specifically tailored Network Policy rule exists to allow only network traffic we expect to receive from the API Gateway. When a client connects to the COMS API, they go through OpenShift's router and load balancer before landing on the API gateway. That connection then gets forwarded to one of the COMS API pod replicas. Figure 1 represents the general network traffic direction with the outlined fat arrows. The direction of those arrows represents which component is initializing the TCP/IP connection.
 
 COMS uses a database network pool to maintain persistent database connections. Pooling allows the service to avoid the overhead of repeated TCP/IP 3-way handshakes to start a connection. By reusing existing connections in a network pool, we can pipeline and improve network efficiency. We pool connections from COMS to Patroni within our architecture. The OpenShift load balancer follows general default Kubernetes scheduling behavior.
 
-### Database connection Pooling
+### Database Connection Pooling
 
 We introduced network pooling for Patroni connections to mitigate network traffic overhead. As our volume of traffic increased, it became expensive to create and destroy network connections for each transaction. While low volumes of traffic are capable of operating without any notable delay to the user, we started encountering issues when scaling up and improving total transaction flow within COMS.
 

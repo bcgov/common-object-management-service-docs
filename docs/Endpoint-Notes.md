@@ -1,18 +1,26 @@
 This page outlines the general usage patterns and organization of the COMS API. This article is intended for a technical audience, and for people who are planning on using the API endpoints.
 
-!!! info
-    The COMS API is documented using the [OpenAPI Specification](https://coms.api.gov.bc.ca/api/v1/docs).
+For full details on each section, please see the [OpenAPI Specification](https://coms.api.gov.bc.ca/api/v1/docs) for the COMS API.
+
+!!! warning
+    All endpoints that accept an `idp` query parameter will implicitly convert `azureidir` to `idir`, if present.
+    
+    Please see the [User](#User) section on this page for more info.
 
 ## Bucket
 
-Bucket operations offer the usual CRUD operations for bucket resource management. For example:
+Bucket operations offer the usual CRUD operations for bucket resource management. 
+
+For example:
 
 - `CREATE /bucket` and `PATCH /bucket/{bucketId}` will pre-emptively check to see if the proposed credential changes represent a network-accessible bucket. These endpoints will yield an error if it is unable to validate the bucket.
 - The `GET /bucket` search and `PATCH /bucket/{bucketId}/public` public toggle require a backing database in order to function.
 
 ## Object
 
-Object endpoints directly influence and manipulate S3 objects and information inherent to them. These endpoints serve as the main core of COMS, focusing on CRUD operations for the objects themselves.
+Object endpoints directly influence and manipulate S3 objects and information inherent to them.
+
+These endpoints serve as the main core of COMS, focusing on CRUD operations for the objects themselves.
 
 - Uploading (`POST /object`) or updating an object ( `POST /object/{objectId}`) accepts a file in a multipart/form-data body. You can include metadata (via headers) and tags (using query params) in this request.
 - `GET /object/{objectId}` is the main endpoint for users to directly access and download a single object.
@@ -24,35 +32,41 @@ Object endpoints directly influence and manipulate S3 objects and information in
 
 ## Metadata
 
-Metadata operation endpoints directly focus on the manipulation of metadata of S3 Objects. Each endpoint will create a copy of the object with the modified metadata attached.
+Metadata operation endpoints directly focus on the manipulation of metadata of S3 Objects. 
 
-More details found here: [Metadata and Tags](Metadata-Tag.md)
+Each endpoint will create a copy of the object with the modified metadata attached.
 
 ## Tag
 
-Tag operation endpoints directly focus on the manipulation of tags of S3 Objects. Unlike Metadata, Tags can be modified without the need to create new versions of the object.
+Tag operation endpoints directly focus on the manipulation of tags of S3 Objects. 
 
-More details found here: [Metadata and Tags](Metadata-Tag.md)
+Unlike Metadata, Tags can be modified without the need to create new versions of the object.
 
 ## Versions
 
-Version specific operations focus on listing and discovering versioning information known by COMS. While the majority of version-specific operations are available as query parameters in the Objects endpoints, the `GET /object/{objectId}/version` endpoint focuses on letting users discover and list what versions are available to work with.
+Version specific operations focus on listing and discovering versioning information known by COMS. 
+
+While the majority of version-specific operations are available as query parameters in the Objects endpoints, the `GET /object/{objectId}/version` endpoint focuses on letting users discover and list what versions are available to work with.
 
 ## Permissions
 
-Permission operation endpoints directly focus on associating users to objects with specific permissions. All of these endpoints require a database to function. Existing permissions can be searched for using `GET /permission/object` and `GET /permission/bucket`, and standard create, read and delete operations for permissions exist to allow users to modify access control for specific objects they have management permissions over.
+Permission operation endpoints directly focus on associating users to objects with specific permissions. 
 
-## Invite URL's
+All of these endpoints require a database to function. Existing permissions can be searched for using `GET /permission/object` and `GET /permission/bucket`, and standard create, read and delete operations for permissions exist to allow users to modify access control for specific objects they have management permissions over.
 
-COMS also offers a user invite feature. Generate a time-limited, single use invitation token which can be used by an authenticated user to acquire `READ` or other permissions to a specific resource (object or bucket). Optional email-user validation may be specified to ensure the link is only used by the intended recipient. To create an invite link one must have the MANAGE permission on the resource being shared.
+## Invite URLs
 
-See [API Specification](https://coms.api.gov.bc.ca/api/v1/docs#tag/Permission/operation/createInvite)
+COMS also offers a user invite feature. Generate a time-limited, single use invitation token which can be used by an authenticated user to acquire `READ` or other permissions to a specific resource (object or bucket). 
+
+Optional email-user validation may be specified to ensure the link is only used by the intended recipient. To create an invite link, one must have the `MANAGE` permission on the resource being shared.
 
 ## Sync
 
 *Available in COMS v0.7+*
 
-Sync endpoints allow synchronizing COMS' internal state with that of the actual S3 bucket/object. This can be useful for setting up a S3 bucket with preexisting files for use with COMS without having to re-upload everything through the COMS API, or for synchronizing changes made through an external S3 client (e.g. S3 Browser, Cyberduck etc) to an object already managed by COMS.
+Sync endpoints allow synchronizing COMS' internal state with that of the actual S3 bucket/object. 
+
+This can be useful for setting up a S3 bucket with preexisting files for use with COMS without having to re-upload everything through the COMS API, or for synchronizing changes made through an external S3 client (e.g. S3 Browser, Cyberduck etc) to an object already managed by COMS.
 
 API calls to the sync endpoints do not immediately add all detected changes to COMS' internal database; instead, they are added to a queue where they are eventually processed. The endpoint `GET /sync/status` returns the number of items that are currently sitting in this queue.
 
@@ -60,4 +74,13 @@ At the time of writing, synchronization is not done automatically, so the sync e
 
 ## User
 
-User operation endpoints focus on exposing known tracked users and identity providers. These endpoints serve as a reference point for finding the right user and identity to manipulate in the Permission endpoints. As COMS is relatively agnostic to how a user logs in (it only cares that you exist), the onus of determining which identity provider a user uses falls onto the line of business to handle, should that be something that needs monitoring.
+User operation endpoints focus on exposing known tracked users and identity providers. 
+
+These endpoints serve as a reference point for finding the right user and identity to manipulate in the Permission endpoints. As COMS is relatively agnostic to how a user logs in (it only cares that you exist), the onus of determining which identity provider a user uses falls onto the line of business to handle, should that be something that needs monitoring.
+
+!!! note
+    The IDIR-MFA identity provider (`azureidir`) is treated the same as IDIR (`idir`):
+    - COMS API calls with `azureidir` in the query string (i.e. `?idp=azureidir`) are implicitly converted to `idir` (i.e. the results will be as if the query has `?idp=idir`)
+    - COMS API responses will always return `idir` instead of `azureidir`
+        
+    This behaviour applies to *all* COMS endpoints that accept an `idp` query parameter.

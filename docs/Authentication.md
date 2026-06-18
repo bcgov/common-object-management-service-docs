@@ -1,7 +1,7 @@
 This page describes how to authenticate requests to the COMS API. The [Authentication Modes](Config.md#authentication-modes) must be enabled in the COMS configuration.
 
 !!! Note
-    The BC Gov Hosted COMS service only allows [OIDC Authentication](#oidc-authentication) using JWTs issued by the [Pathfinder SSO `standard` Keycloak realm](https://developer.gov.bc.ca/docs/default/component/css-docs/Useful-References/#standard-realm), as well as [S3 Service Account Authentication](#s3-service-account).
+    The BC Government Hosted COMS service only allows [OIDC Authentication](#oidc-authentication) using JWTs issued by the [Pathfinder SSO `standard` Keycloak realm](https://developer.gov.bc.ca/docs/default/component/css-docs/Useful-References/#standard-realm), as well as [S3 Service Account Authentication](#s3-service-account).
 
 ## OIDC Authentication
 

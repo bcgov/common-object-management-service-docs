@@ -7,7 +7,7 @@
 * [x] Recursive folder permissions management
 * [x] Bug fixes for deleted file syncing
 * [x] IDP-wide permissions management
-* [ ] IDIR MFA support
+* [x] IDIR MFA support
 
 ## v0.9.0 - CopyVersion, Sync and Folder mapping improvements
 
