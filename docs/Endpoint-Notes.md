@@ -5,7 +5,7 @@ For full details on each section, please see the [OpenAPI Specification](https:/
 !!! warning
     All endpoints that accept an `idp` query parameter will implicitly convert `azureidir` to `idir`, if present.
     
-    Please see the [User](#User) section on this page for more info.
+    Please see the [User](#user) section on this page for more info.
 
 ## Bucket
 
@@ -80,7 +80,14 @@ These endpoints serve as a reference point for finding the right user and identi
 
 !!! note
     The IDIR-MFA identity provider (`azureidir`) is treated the same as IDIR (`idir`):
+    
     - COMS API calls with `azureidir` in the query string (i.e. `?idp=azureidir`) are implicitly converted to `idir` (i.e. the results will be as if the query has `?idp=idir`)
     - COMS API responses will always return `idir` instead of `azureidir`
         
     This behaviour applies to *all* COMS endpoints that accept an `idp` query parameter.
+
+!!! info
+    See the OpenAPI specification for details on the endpoints that toggle the public status of a file or bucket:
+    
+    - [File](https://coms.api.gov.bc.ca/api/v1/docs#tag/Object/operation/togglePublic)
+    - [Bucket or Folder](https://coms.api.gov.bc.ca/api/v1/docs#tag/Bucket/operation/togglePublic)
