@@ -21,7 +21,7 @@ Self-hosted COMS can also be configured to [disable authentication](Authenticati
 COMS treats the IDIR-MFA identity provider (`azureidir`) the same as the SiteMinder-based IDIR (`idir`). In other words, whenever a user token with `idp: azureidir` is received, it is implicitly converted to `idir` and processed as such.
 
 !!! warning
-    Please see [Endpoint Notes: User](Endpoint-Notes#user) for more info on working with `azureidir` users.
+    Please see [Endpoint Notes: User](Endpoint-Notes.md#user) for more info on working with `azureidir` users.
 
 ### Acquiring a Bucket
 
