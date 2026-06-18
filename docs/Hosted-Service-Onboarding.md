@@ -21,7 +21,7 @@ Self-hosted COMS can also be configured to [disable authentication](Authenticati
 COMS treats the IDIR-MFA identity provider (`azureidir`) the same as the SiteMinder-based IDIR (`idir`). In other words, whenever a user token with `idp: azureidir` is received, it is implicitly converted to `idir` and processed as such.
 
 !!! warning
-    Please see [Endpoint Notes: User](Endpoint-Notes#User) for more info on working with `azureidir` users.
+    Please see [Endpoint Notes: User](Endpoint-Notes#user) for more info on working with `azureidir` users.
 
 ### Acquiring a Bucket
 
@@ -51,6 +51,7 @@ As part of your development workflow, ensure your application is using the corre
 The Hosted COMS service only accepts User Authentication tokens issued by the corresponding Pathfinder SSO "Standard" realm.
 
 COMS has 3 environments available:
+
 - **Development:**
 	- [https://coms-dev.api.gov.bc.ca/api/v1/](https://coms.api.gov.bc.ca/api/v1/)
 - **Test:**
@@ -59,6 +60,6 @@ COMS has 3 environments available:
 	- [https://coms.api.gov.bc.ca/api/v1/](https://coms.api.gov.bc.ca/api/v1/)
 
 !!! warning
-    The **Development** and **Test** environments are unstable. Functionality may change or break at any time.
+    The **Development** and **Test** environments are unstable. Functionality can change or break at any time.
     
     Please use the **Production** environment if you require stability.
